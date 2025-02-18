@@ -6,6 +6,7 @@ import lombok.*;
 import java.time.LocalDate;
 import java.util.*;
 
+
 @Entity
 @Data // toString, getters, setter, hashcode, equals
 @Builder
@@ -36,6 +37,7 @@ public class Pelicula {
     @ToString.Exclude
     @Builder.Default
     private List<Plataforma> plataformasDisponibles = new ArrayList<>();//netflix, hbo, etc
+
 
 
 }

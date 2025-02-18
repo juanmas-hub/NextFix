@@ -35,9 +35,11 @@ public class PeliculaService {
 
     public Pelicula guardarPelicula(Pelicula pelicula, Long idDirector, List<Long> idPlataformas) {
         Director director = directorRepository.findById(idDirector)
-                .orElseThrow(() -> new RuntimeException("No se encontro la director con id: " + idDirector + " al momento de guardar pelicula"));
+                .orElseThrow(() -> new RuntimeException("No se encontró el director con el id:"
+                        +idDirector+" al momento de guardar la pelicula"));
 
-        pelicula.setDirector(director);
+        // pelicula.setDirector(director);
+
 
         if (idPlataformas != null) {
             pelicula.setPlataformasDisponibles(plataformaRepository.findAllById(idPlataformas));
@@ -63,8 +65,7 @@ public class PeliculaService {
         return peliculaBuilder.build();
     }
 
-    public void actualizarPelicula(Long idPelicula, Pelicula peliculaActualizada,
-                                   Long idDirector, List<Long> idPlataformas) {
+    public void actualizarPelicula(Long idPelicula, Pelicula peliculaActualizada, Long idDirector, List<Long> idPlataformas) {
 
         Optional<Pelicula> peliculaOptional = peliculaRepository.findById(idPelicula);
 
