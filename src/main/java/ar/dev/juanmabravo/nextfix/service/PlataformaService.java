@@ -18,7 +18,7 @@ public class PlataformaService {
 
     public Plataforma obtenerPlataformaPorId(Long id) {
         return plataformaRepository.findById(id).orElseThrow(
-                () -> new RuntimeException("No se encontro la plataforma con id: "+id));
+                () -> new RuntimeException("No se encontro la plataforma con el id: "+id));
     }
 
     public List<Plataforma> listarPlataformas() {

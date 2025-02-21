@@ -6,7 +6,6 @@ import lombok.*;
 import java.time.LocalDate;
 import java.util.*;
 
-
 @Entity
 @Data // toString, getters, setter, hashcode, equals
 @Builder
@@ -33,7 +32,6 @@ public class Pelicula {
     @JoinTable(name = "Pelicula_Plataforma", // nombre tabla auxiliar en bd
             joinColumns = @JoinColumn(name = "pelicula_id"), // nombre en bd
             inverseJoinColumns = @JoinColumn(name = "plataforma_id")) // nombre en bd
-
     @ToString.Exclude
     @Builder.Default
     private List<Plataforma> plataformasDisponibles = new ArrayList<>();//netflix, hbo, etc

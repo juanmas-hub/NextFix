@@ -1,5 +1,6 @@
 package ar.dev.juanmabravo.nextfix.repository;
 
+import ar.dev.juanmabravo.nextfix.models.Director;
 import ar.dev.juanmabravo.nextfix.models.Pelicula;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -17,7 +18,7 @@ public interface PeliculaRepository extends JpaRepository<Pelicula, Long> {
     @Query("SELECT p FROM Pelicula p ORDER BY LOWER(p.titulo) ASC")
     List<Pelicula> findByAllByOrderByTituloIgnoreCaseAsc();
 
-    void deleteByDirector(String diector);
+    void deleteByDirector(Director diector);
 
     void deleteByGenero(String genero);
 }

@@ -17,6 +17,7 @@ public class Director {
     @Column(name = "id", nullable = false)
     private Long id;
 
+
     private String nacionalidad;
 
     private LocalDate fechaNacimiento;

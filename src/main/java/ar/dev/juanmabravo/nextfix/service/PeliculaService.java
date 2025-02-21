@@ -38,7 +38,7 @@ public class PeliculaService {
                 .orElseThrow(() -> new RuntimeException("No se encontró el director con el id:"
                         +idDirector+" al momento de guardar la pelicula"));
 
-        // pelicula.setDirector(director);
+        pelicula.setDirector(director);
 
 
         if (idPlataformas != null) {
