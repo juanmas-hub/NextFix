@@ -41,3 +41,19 @@ INSERT INTO Pelicula_Plataforma (pelicula_id, plataforma_id) VALUES (1, 1);
 INSERT INTO Pelicula_Plataforma (pelicula_id, plataforma_id) VALUES (2, 2);
 INSERT INTO Pelicula_Plataforma (pelicula_id, plataforma_id) VALUES (2, 1);
 INSERT INTO Pelicula_Plataforma (pelicula_id, plataforma_id) VALUES (3, 4);
+
+-- Inserción de Usuarios (contraseña user)
+INSERT INTO usuario (username, contrasena, rol, nombre, apellido) VALUES ( 'admin', '{bcrypt}$2a$12$eyd1Muaz4ZxxZvC4nd556Ou1iaqfA/RReZagH4PpawE7Yazf9tQi6', 'ROL_ADMIN', 'José', 'Pérez');
+INSERT INTO usuario (username, contrasena, rol, nombre, apellido) VALUES ( 'lectura1', '{bcrypt}$2a$12$eyd1Muaz4ZxxZvC4nd556Ou1iaqfA/RReZagH4PpawE7Yazf9tQi6', 'ROL_LECTURA', 'Martin', 'Gomez');
+INSERT INTO usuario (username, contrasena, rol, nombre, apellido) VALUES ( 'lectura2', '{bcrypt}$2a$12$eyd1Muaz4ZxxZvC4nd556Ou1iaqfA/RReZagH4PpawE7Yazf9tQi6', 'ROL_LECTURA', 'Juan', 'Villalba');
+
+-- Inserción de Usuarios con Directores (contraseña user)
+INSERT INTO usuario (username, contrasena, rol, nombre, apellido, director_id) VALUES ( 'director_oderay', '{bcrypt}$2a$12$eyd1Muaz4ZxxZvC4nd556Ou1iaqfA/RReZagH4PpawE7Yazf9tQi6', 'ROL_DIRECTOR', 'Ode', 'Pérez', 1);
+INSERT INTO usuario (username, contrasena, rol, nombre, apellido, director_id) VALUES ( 'director_patricio', '{bcrypt}$2a$12$eyd1Muaz4ZxxZvC4nd556Ou1iaqfA/RReZagH4PpawE7Yazf9tQi6', 'ROL_DIRECTOR', 'Patricio', 'Gomez', 2);
+INSERT INTO usuario (username, contrasena, rol, nombre, apellido, director_id) VALUES ( 'director_giancarlo', '{bcrypt}$2a$12$eyd1Muaz4ZxxZvC4nd556Ou1iaqfA/RReZagH4PpawE7Yazf9tQi6', 'ROL_DIRECTOR', 'Giancarlo', 'Villalba', 3);
+INSERT INTO usuario (username, contrasena, rol, nombre, apellido, director_id) VALUES ( 'director_clairedupont', '{bcrypt}$2a$12$eyd1Muaz4ZxxZvC4nd556Ou1iaqfA/RReZagH4PpawE7Yazf9tQi6', 'ROL_DIRECTOR', 'Ode', 'Pérez', 4);
+INSERT INTO usuario (username, contrasena, rol, nombre, apellido, director_id) VALUES ( 'director_emilybrown', '{bcrypt}$2a$12$eyd1Muaz4ZxxZvC4nd556Ou1iaqfA/RReZagH4PpawE7Yazf9tQi6', 'ROL_DIRECTOR', 'Patricio', 'Gomez', 5);
+INSERT INTO usuario (username, contrasena, rol, nombre, apellido, director_id) VALUES ( 'director_2', '{bcrypt}$2a$12$eyd1Muaz4ZxxZvC4nd556Ou1iaqfA/RReZagH4PpawE7Yazf9tQi6', 'ROL_DIRECTOR', 'director_3', 'Villalba', 6);
+INSERT INTO usuario (username, contrasena, rol, nombre, apellido, director_id) VALUES ( 'director_3', '{bcrypt}$2a$12$eyd1Muaz4ZxxZvC4nd556Ou1iaqfA/RReZagH4PpawE7Yazf9tQi6', 'ROL_DIRECTOR', 'director_4', 'Villalba', 7);
+INSERT INTO usuario (username, contrasena, rol, nombre, apellido, director_id) VALUES ( 'director_4', '{bcrypt}$2a$12$eyd1Muaz4ZxxZvC4nd556Ou1iaqfA/RReZagH4PpawE7Yazf9tQi6', 'ROL_DIRECTOR', 'director_5', 'Villalba', 8);
+INSERT INTO usuario (username, contrasena, rol, nombre, apellido, director_id) VALUES ( 'director_5', '{bcrypt}$2a$12$eyd1Muaz4ZxxZvC4nd556Ou1iaqfA/RReZagH4PpawE7Yazf9tQi6', 'ROL_DIRECTOR', 'director_6', 'Villalba', 9);
