@@ -25,9 +25,9 @@ public class SecurityConfiguration {
         http.csrf(crsf -> crsf.ignoringRequestMatchers(toH2Console()))
                 .userDetailsService(userDetailsService)
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/", "/registro").permitAll()
-                        .requestMatchers(new AntPathRequestMatcher("/gestorRoles")).hasAuthority("ROL_ADMIN")
-                        .requestMatchers(new AntPathRequestMatcher("/actualizarRolUsuario")).hasAuthority("ROL_ADMIN")
+                        .requestMatchers("/", "/registro").permitAll() // Cualquier usuario puede acceder
+                        .requestMatchers(new AntPathRequestMatcher("/gestorRoles")).hasAuthority("ROL_ADMIN") // Acceso limitado
+                        .requestMatchers(new AntPathRequestMatcher("/actualizarRolUsuario")).hasAuthority("ROL_ADMIN") // Acceso limitado
                         .requestMatchers(toH2Console()).permitAll()
                         .anyRequest().authenticated()
                 )

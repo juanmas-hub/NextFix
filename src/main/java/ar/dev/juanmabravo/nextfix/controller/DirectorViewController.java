@@ -1,5 +1,6 @@
 package ar.dev.juanmabravo.nextfix.controller;
 
+import ar.dev.juanmabravo.nextfix.service.CustomUserDetailsService;
 import ar.dev.juanmabravo.nextfix.service.DirectorService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -11,14 +12,13 @@ import org.springframework.web.bind.annotation.*;
 public class DirectorViewController {
 
     private final DirectorService directorService;
+    private final CustomUserDetailsService customUserDetailsService;
 
-    @GetMapping("/directores") // Endpoint
-    public String listarDirectores(Model model)
-    {
-        // "directores" es el nombre de la variable que en el front va a contener la lista
+    @GetMapping("/directores")
+    public String listarDirectores(Model model) {
         model.addAttribute("directores", directorService.listarDirectores());
+        model.addAttribute("userService", customUserDetailsService);
 
-        // Retornamos el nombre del html (vista) que va a mostrar la lista
         return "listaDirectores";
     }
 }

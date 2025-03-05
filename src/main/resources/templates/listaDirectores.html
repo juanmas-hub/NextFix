@@ -1,43 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- Para INSERTAR -->
 <head th:insert="~{fragments/header}"></head>
 <body class="container mt-5">
-    <table class="table table-bordered">
-        <thead class="thead-dark">
-        <tr>
-            <th>ID</th>
-            <th>Nacionalidad</th>
-            <th>Fecha de nacimiento</th>
-            <th>Email</th>
-            <th>Peliculas</th>
 
-        </tr>
-        </thead>
+<h2>Lista de Directores</h2>
 
-        <tbody>
-            <tr th:each="director : ${directores}">
-                <td th:text="${director.id}"></td>
-                <td th:text="${director.nacionalidad}"></td>
-                <td th:text="${director.fechaNacimiento}"></td>
-                <td th:text="${director.email}"></td>
-                <td>
-                    <label>
-                        <select disabled size="5" style="max-height: 75px; overflow-y: auto;">
-                            <option th:each="pelicula : ${director.getPeliculasDirigidas()}" th:value="${pelicula.id}" th:text="${pelicula.titulo}"></option>
-                        </select>
-                    </label>
-                </td>
+<table class="table table-bordered">
+    <thead class="thead-dark">
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Nacionalidad</th>
+        <th>Fecha de Nacimiento</th>
+        <th>Email</th>
+        <th>Peliculas</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="director : ${directores}">
+        <td th:text="${director.id}"></td>
+        <td th:text="${userService.obtenerUsuarioPorDirector(director)?.nombre ?: 'Nombre no disponible'}"></td>
+        <td th:text="${userService.obtenerUsuarioPorDirector(director)?.apellido ?: 'Apellido no disponible'}"></td>
+        <td th:text="${director.nacionalidad}"></td>
+        <td th:text="${director.fechaNacimiento}"></td>
+        <td th:text="${director.email}"></td>
+        <td>
+            <label>
+                <select disabled size="5" style="max-height: 75px; overflow-y: auto;">
+                    <option th:each="pelicula : ${director.getPeliculasDirigidas()}" th:value="${pelicula.id}" th:text="${pelicula.titulo}"></option>
+                </select>
+            </label>
+        </td>
+    </tr>
+    </tbody>
+</table>
 
-            </tr>
+<!-- Enlace para regresar a la lista de peliculas -->
+<a th:href="@{/peliculas}" class="btn btn-secondary">Ver Lista de Peliculas</a>
 
-        </tbody>
-
-    </table>
-    <!-- Enlace para regresar a la lista de peliculas -->
-    <a th:href="@{/peliculas}" class="btn btn-secondary">Ver Lista de Peliculas</a>
-
-    <!-- Para REEMPLAZAR -->
-    <div th:replace="~{fragments/footer}"></div>
+<div th:replace="~{fragments/footer}"></div>
 </body>
 </html>

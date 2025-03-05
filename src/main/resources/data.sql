@@ -29,6 +29,8 @@ VALUES
     ('El Padrino', 'Crimen', '1972-03-24', 1),
     ('La Guerra de las Galaxias', 'Ciencia Ficción', '1977-05-25', 2),
     ('Titanic', 'Romántico', '1997-12-19', 3),
+    ('Rocop', 'Acción', '1997-12-19', 3),
+    ('Sonic 3', 'Animada', '1997-12-19', 3),
     ('Jurassic Park', 'Aventura', '1993-06-11', 4),
     ('El Señor de los Anillos: La Comunidad del Anillo', 'Fantástico', '2001-12-19', 4),
     ('Avengers: Endgame', 'Acción', '2019-04-26', 5),
@@ -37,10 +39,16 @@ VALUES
     ('Pulp Fiction', 'Crimen', '1994-10-14', 7),
     ('Forrest Gump', 'Drama', '1994-07-06', 8);
 
-INSERT INTO Pelicula_Plataforma (pelicula_id, plataforma_id) VALUES (1, 1);
-INSERT INTO Pelicula_Plataforma (pelicula_id, plataforma_id) VALUES (2, 2);
-INSERT INTO Pelicula_Plataforma (pelicula_id, plataforma_id) VALUES (2, 1);
-INSERT INTO Pelicula_Plataforma (pelicula_id, plataforma_id) VALUES (3, 4);
+INSERT INTO Pelicula_Plataforma (pelicula_id, plataforma_id)
+VALUES
+    (1, 1),
+    (2, 2),
+    (2, 1),
+    (3, 4),
+    (7, 1),
+    (8, 2),
+    (9, 1),
+    (10, 4);
 
 -- Inserción de Usuarios (contraseña user)
 INSERT INTO usuario (username, contrasena, rol, nombre, apellido) VALUES ( 'admin', '{bcrypt}$2a$12$eyd1Muaz4ZxxZvC4nd556Ou1iaqfA/RReZagH4PpawE7Yazf9tQi6', 'ROL_ADMIN', 'José', 'Pérez');
