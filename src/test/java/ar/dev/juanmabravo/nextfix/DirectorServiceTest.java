@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @RequiredArgsConstructor(onConstructor = @__(@Autowired)) // Inyección de dependencia mediante constructor
-public class DirectorServiceTest {
+public class DirectorServiceTest extends BaseTest{
 
     private final DirectorService directorService;
     private Director directorGuardado;
