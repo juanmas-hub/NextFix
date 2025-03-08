@@ -51,10 +51,6 @@ El endpoint principal de la aplicación se encuentra en:
 - lectura1
 - director_2
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/maxisandoval37/NextFix-WebApp/refs/heads/main/src/main/resources/static/demo.gif" />
-</p>
-
 ## Online Report Result Tests
 
 ### [Click Here! 🖱️](https://maxisandoval37.github.io/NextFix-WebApp/)
