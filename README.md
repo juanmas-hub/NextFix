@@ -1,4 +1,4 @@
-# NextFix Web App - Educación IT 2025 (Curso dictado por mi autoría)
+# NextFix Web App - Proyecto del curso de EducationIT
 
 Este proyecto es una aplicación web Java desarrollada con el framework **Spring Boot**.
 
@@ -17,6 +17,7 @@ Este proyecto es una aplicación web Java desarrollada con el framework **Spring
 - **Spring Boot Starter Tomcat**
 - **Spring Boot Starter Test / Junit**
 - **H2 Database:** DB en memoria utilizada para desarrollo y pruebas. Configuración de la consola interactiva.
+- **Thymeleaf**
 - **SQL**
 - **Spring Boot Starter Thymeleaf:** Integración con el motor de plantillas y utilización de **fragmentos**. Acompañado de **HTML5**, **CSS** y **JS**.
 - **Bootstrap 5**
@@ -43,7 +44,7 @@ El endpoint principal de la aplicación se encuentra en:
 
 ## Live Demo
 
-### [Click Here! 🖱️](https://nextfix-webapp.onrender.com/)
+### [Click Here! 🖱️](https://nextfixproject.onrender.com/)
 
 #### Usuarios de prueba (pass: *user*):
 - admin
