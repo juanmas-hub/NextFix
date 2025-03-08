@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @RequiredArgsConstructor(onConstructor = @__(@Autowired)) // Inyección de dependencia mediante constructor
-public class PlataformaServiceTest {
+public class PlataformaServiceTest extends BaseTest {
 
     private final PlataformaService plataformaService;
     private Plataforma plataformaGuardada;
