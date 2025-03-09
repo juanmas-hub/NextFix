@@ -53,6 +53,6 @@ El endpoint principal de la aplicación se encuentra en:
 
 ## Online Report Result Tests
 
-### [Click Here! 🖱️](https://maxisandoval37.github.io/NextFix-WebApp/)
+### [Click Here! 🖱️](https://juanmas-hub.github.io/NextFixProject/)
 
 <hr>
