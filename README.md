@@ -1,4 +1,4 @@
-# NextFix Web App - Proyecto del curso de EducationIT
+# NextFix Web App
 
 Este proyecto es una aplicación web Java desarrollada con el framework **Spring Boot**.
 
