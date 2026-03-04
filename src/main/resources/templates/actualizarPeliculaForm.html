@@ -1,46 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head th:insert="~{fragments/header}"></head>
-<body class="container mt-5">
+<body class="bg-light">
 
-<h2 class="mb-4">Actualizar Pelicula</h2>
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-warning text-dark d-flex justify-content-between align-items-center py-3">
+                    <h4 class="mb-0">Actualizar Película</h4>
+                    <a th:href="@{/peliculas}" class="btn btn-sm btn-outline-dark">Volver a la lista</a>
+                </div>
+                <div class="card-body p-4">
+                    <form th:action="@{/actualizarPelicula/{id}(id=${pelicula.id})}" method="post">
+                        <input type="hidden" name="_method" value="put">
 
-<form th:action="@{/actualizarPelicula/{id}(id=${pelicula.id})}" method="post">
-    <input type="hidden" name="_method" value="put">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="titulo" class="form-label fw-bold">Título:</label>
+                                <input type="text" class="form-control" id="titulo" name="titulo" th:value="${pelicula.titulo}" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="genero" class="form-label fw-bold">Género:</label>
+                                <input type="text" class="form-control" id="genero" name="genero" th:value="${pelicula.getGenero()}" required>
+                            </div>
+                        </div>
 
-    <div class="form-group">
-        <label for="titulo">Título:</label>
-        <input type="text" class="form-control" id="titulo" name="titulo" th:value="${pelicula.titulo}" required>
+                        <div class="mb-3">
+                            <label for="fechaEstreno" class="form-label fw-bold">Fecha de Estreno:</label>
+                            <input type="date" class="form-control" id="fechaEstreno" name="fechaEstreno" th:value="${pelicula.getFechaEstreno()}" min="1970-01-01" max="3000-12-31" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="idDirector" class="form-label fw-bold">Director:</label>
+                            <select class="form-select" id="idDirector" name="idDirector" required>
+                                <option th:each="usuario : ${usuariosConDirector}" th:value="${usuario.director.id}" th:text="${usuario.nombre +' '+ usuario.apellido}" th:selected="${usuario.director.id eq pelicula.director.id}"></option>
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="idPlataformas" class="form-label fw-bold">Plataformas:</label>
+                            <select class="form-select" id="idPlataformas" name="idPlataformas" multiple style="height: 120px;">
+                                <option th:each="plataforma : ${plataformas}" th:value="${plataforma.id}" th:text="${plataforma.nombre}" th:selected="${pelicula.getPlataformasDisponibles() != null and pelicula.getPlataformasDisponibles.contains(plataforma)}"></option>
+                            </select>
+                            <div class="form-text text-muted">Mantenga presionado Ctrl (o Cmd en Mac) para seleccionar varias plataformas.</div>
+                        </div>
+
+                        <div class="d-grid text-end">
+                            <button type="submit" class="btn btn-warning btn-lg px-5 fw-bold">Actualizar Película</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="form-group">
-        <label for="genero">Género:</label>
-        <input type="text" class="form-control" id="genero" name="genero" th:value="${pelicula.getGenero()}" required>
-    </div>
-
-    <div class="form-group">
-        <label for="fechaEstreno">Fecha de Estreno:</label>
-        <input type="date" class="form-control" id="fechaEstreno" name="fechaEstreno" th:value="${pelicula.getFechaEstreno()}" min="1970-01-01" max="3000-12-31" required>
-    </div>
-
-    <!-- Lista desplegable para seleccionar el director -->
-    <div class="form-group">
-        <label for="idDirector">Director:</label>
-        <select class="form-control" id="idDirector" name="idDirector" required>
-            <option th:each="usuario : ${usuariosConDirector}" th:value="${usuario.director.id}" th:text="${usuario.nombre +' '+ usuario.apellido}" th:selected="${usuario.director.id eq pelicula.director.id}"></option>
-        </select>
-    </div>
-
-    <!-- Lista desplegable para seleccionar las plataformas-->
-    <div class="form-group">
-        <label for="idPlataformas">Plataformas:</label>
-        <select class="form-control" id="idPlataformas" name="idPlataformas" multiple>
-            <option th:each="plataforma : ${plataformas}" th:value="${plataforma.id}" th:text="${plataforma.nombre}" th:selected="${pelicula.getPlataformasDisponibles() != null and pelicula.getPlataformasDisponibles.contains(plataforma)}"></option>
-        </select>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Actualizar Pelicula</button>
-</form>
+</div>
 
 <div th:replace="~{fragments/footer}"></div>
 </body>

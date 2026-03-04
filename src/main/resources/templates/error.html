@@ -1,22 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head th:insert="~{fragments/header}"></head>
-<body class="container mt-5">
+<body class="bg-light d-flex align-items-center" style="min-height: 80vh;">
 
-<div class="row justify-content-center">
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-cody">
-                <h2 class="card-title">Error</h2>
-                <p class="class-text">Ocurrió un error inesperado. Por favor, inténtalo de nuevo más tarde:</p>
-                <br>
-                <div th:if="${error}" th:text="${error}" style="color: gray"></div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+            <div class="card border-danger shadow-lg mt-5">
+                <div class="card-header bg-danger text-white">
+                    <h3 class="mb-0">⚠️ Algo salió mal</h3>
+                </div>
+                <div class="card-body p-5">
+                    <h5 class="card-title text-danger mb-4">Ocurrió un error inesperado.</h5>
+                    <p class="card-text text-muted">Por favor, inténtalo de nuevo más tarde o contacta al administrador.</p>
+                    
+                    <div th:if="${error}" class="alert alert-secondary mt-4 text-start" role="alert">
+                        <strong>Detalle del error:</strong><br>
+                        <span th:text="${error}"></span>
+                    </div>
+
+                    <a th:href="@{/peliculas}" class="btn btn-outline-danger mt-3">Volver al Inicio</a>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 <div th:replace="~{fragments/footer}"></div>
-
 </body>
 </html>

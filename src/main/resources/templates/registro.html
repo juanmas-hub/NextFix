@@ -1,44 +1,51 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:insert="~{fragments/headerNoLogin}"></head>
-<body class="container mt-5">
+<body class="bg-light d-flex align-items-center" style="min-height: 100vh;">
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-6 offset-md-3">
-            <h2 class="mb-4">Registro de Usuario</h2>
-
-            <form th:action="@{/registro}" method="post" th:object="${usuario}" class="md-4">
-                <div class="form-group">
-                    <label for="username">Username: </label>
-                    <input type="text" id="username" name="username" th:field="*{username}" class="form-control" required>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                <div class="card-header bg-success text-white text-center py-4">
+                    <h3 class="font-weight-light my-2">Registro de Usuario</h3>
                 </div>
+                <div class="card-body p-4">
+                    <form th:action="@{/registro}" method="post" th:object="${usuario}">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="nombre" class="form-label fw-bold text-muted">Nombre</label>
+                                <input type="text" id="nombre" name="nombre" th:field="*{nombre}" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="apellido" class="form-label fw-bold text-muted">Apellido</label>
+                                <input type="text" id="apellido" name="apellido" th:field="*{apellido}" class="form-control" required>
+                            </div>
+                        </div>
 
-                <div class="form-group">
-                    <label for="nombre">Nombre: </label>
-                    <input type="text" id="nombre" name="nombre" th:field="*{nombre}" class="form-control" required>
+                        <div class="mb-3">
+                            <label for="username" class="form-label fw-bold text-muted">Username</label>
+                            <input type="text" id="username" name="username" th:field="*{username}" class="form-control" required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="contrasena" class="form-label fw-bold text-muted">Contraseña</label>
+                            <input type="password" id="contrasena" name="contrasena" th:field="*{contrasena}" class="form-control" required>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-success btn-lg">Crear Cuenta</button>
+                        </div>
+                    </form>
                 </div>
-
-                <div class="form-group">
-                    <label for="apellido">Apellido: </label>
-                    <input type="text" id="apellido" name="apellido" th:field="*{apellido}" class="form-control" required>
+                <div class="card-footer text-center py-3 bg-white">
+                    <div class="small"><a th:href="@{/login}" class="text-decoration-none text-success">¿Ya tenés cuenta? Hacé click acá</a></div>
                 </div>
-
-                <div class="form-group">
-                    <label for="contrasena">Contraseña: </label>
-                    <input type="password" id="contrasena" name="contrasena" th:field="*{contrasena}" class="form-control" required>
-                </div>
-
-                <br>
-                <button type="submit" class="btn btn-primary">Registrarse</button>
-            </form>
-
-            <p>¿Ya tenes cuenta? <a th:href="@{/login}">Click acá!</a></p>
+            </div>
         </div>
     </div>
 </div>
 
 <div th:replace="~{fragments/footer}"></div>
-
 </body>
 </html>

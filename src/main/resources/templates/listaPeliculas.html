@@ -1,75 +1,84 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:insert="~{fragments/header}"></head>
-<body class="container mt-5">
+<body class="bg-light">
 
-<h2>Lista de Peliculas</h2>
+<div class="container mt-5 mb-5">
+    
+    <div class="alert alert-info shadow-sm d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <strong>👤 Usuario:</strong> <span sec:authentication="principal.username"></span> <br>
+            <strong>🛡️ Rol:</strong> <span sec:authentication="principal.authorities"></span>
+        </div>
+    </div>
 
-<!--Botones para agregar plataformas y peliculas -->
-<div class="mb-3">
-    <a th:href="@{/agregarPlataforma}" class="btn btn-primary">Agregar Plataforma</a>
-    <a th:href="@{/agregarPelicula}" class="btn btn-primary">Agregar Pelicula</a>
-    <a th:href="@{/directores}" class="btn btn-primary">Ver Directores</a>
+    <div class="card shadow-sm border-0">
+        <div class="card-body p-4">
+            <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+                <h2 class="mb-0 text-dark">Catálogo de Películas</h2>
+                
+                <div class="btn-group shadow-sm">
+                    <a th:href="@{/agregarPelicula}" class="btn btn-primary">➕ Agregar Película</a>
+                    <a th:href="@{/agregarPlataforma}" class="btn btn-outline-primary">Agregar Plataforma</a>
+                    <a th:href="@{/directores}" class="btn btn-outline-primary">Ver Directores</a>
+                    <a sec:authorize="hasAuthority('ROL_ADMIN')" th:href="@{/gestorRoles}" class="btn btn-danger">Panel Admin</a>
+                </div>
+            </div>
 
-    <div class="mb-3"></div>
-
-    <a sec:authorize="hasAuthority('ROL_ADMIN')" th:href="@{/gestorRoles}" class="btn btn-danger">Gestor Roles (Panel Admin)</a>
+            <div class="table-responsive">
+                <table class="table table-hover table-striped align-middle border">
+                    <thead class="table-dark text-center">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Título</th>
+                        <th scope="col">Género</th>
+                        <th scope="col">Estreno</th>
+                        <th scope="col">Director</th>
+                        <th scope="col">Plataformas</th>
+                        <th scope="col" sec:authorize="hasAuthority('ROL_ADMIN')">Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody class="text-center">
+                    <tr th:each="pelicula : ${peliculas}">
+                        <td class="fw-bold text-secondary" th:text="${pelicula.id}"></td>
+                        <td class="fw-bold" th:text="${pelicula.titulo}"></td>
+                        <td><span class="badge bg-secondary" th:text="${pelicula.genero}"></span></td>
+                        <td th:text="${pelicula.fechaEstreno}"></td>
+                        <td th:text="${userService.obtenerUsuarioPorDirector(pelicula.director).nombre +' '+ userService.obtenerUsuarioPorDirector(pelicula.director).apellido}"></td>
+                        <td>
+                            <ul class="list-unstyled mb-0">
+                                <li th:each="plataforma : ${pelicula.getPlataformasDisponibles()}">
+                                    <span class="badge bg-info text-dark" th:text="${plataforma.nombre}"></span>
+                                </li>
+                            </ul>
+                        </td>
+                        <td sec:authorize="hasAuthority('ROL_ADMIN')">
+                            <div class="d-flex justify-content-center gap-2">
+                                <a th:href="@{/actualizarPelicula/{id}(id=${pelicula.id})}" class="btn btn-sm btn-warning">✏️ Editar</a>
+                                <button th:onclick="'eliminarPeliculaConfirmacion('+${pelicula.id}+');'" class="btn btn-sm btn-danger">🗑️ Borrar</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(peliculas)}">
+                        <td colspan="7" class="text-center text-muted py-4">No hay películas registradas en el sistema.</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
-
-<table class="table table-bordered">
-
-    USUARIO AUTENTICADO:
-    <div sec:authentication="principal.username"></div>
-    <br>
-    ROLES DEL USUARIO AUTENTICADO:
-    <div sec:authentication="principal.authorities"></div>
-    <br>
-
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Titulo</th>
-        <th>Genero</th>
-        <th>Fecha de Estreno</th>
-        <th>Director</th>
-        <th>Plataformas</th>
-        <th sec:authorize="hasAuthority('ROL_ADMIN')">Acciones</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="pelicula : ${peliculas}">
-        <td th:text="${pelicula.id}"></td>
-        <td th:text="${pelicula.titulo}"></td>
-        <td th:text="${pelicula.genero}"></td>
-        <td th:text="${pelicula.fechaEstreno}"></td>
-
-        <td th:text="${userService.obtenerUsuarioPorDirector(pelicula.director).nombre +' '+
-            userService.obtenerUsuarioPorDirector(pelicula.director).apellido}">
-        </td>
-
-        <td>
-            <ul>
-                <li th:each="plataforma : ${pelicula.getPlataformasDisponibles()}" th:text="${plataforma.nombre}"></li>
-            </ul>
-        </td>
-        <!--Botones de eliminar y actualizar pelicula-->
-        <td sec:authorize="hasAuthority('ROL_ADMIN')">
-            <button th:onclick="'eliminarPeliculaConfirmacion('+${pelicula.id}+');'" class="btn btn-danger">Eliminar</button>
-            <a th:href="@{/actualizarPelicula/{id}(id=${pelicula.id})}" class="btn btn-warning">Actualizar</a>
-        </td>
-    </tr>
-    </tbody>
-</table>
 
 <script>
     function eliminarPeliculaConfirmacion(id) {
         Swal.fire({
-            title: '¿Desea eliminar la pelicula seleccionada?',
+            title: '¿Desea eliminar esta película?',
+            text: "Esta acción no se puede deshacer.",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#3085d6',
-            confirmButtonText: 'Eliminar',
+            confirmButtonColor: '#dc3545',
+            cancelButtonColor: '#6c757d',
+            confirmButtonText: 'Sí, eliminar',
             cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.isConfirmed) {
@@ -80,6 +89,5 @@
 </script>
 
 <div th:replace="~{fragments/footer}"></div>
-
 </body>
 </html>

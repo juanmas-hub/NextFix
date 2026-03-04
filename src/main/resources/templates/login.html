@@ -1,34 +1,37 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:insert="~{fragments/headerNoLogin}"></head>
-<body class="container mt-5">
+<body class="bg-light d-flex align-items-center" style="min-height: 100vh;">
 
-<div class="row justify-content-center">
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-body">
-                <h2 class="card-title text-center mb-4">Iniciar Sesión</h2>
-                <form th:action="@{/login}" method="post">
-                    <div class="form-group">
-                        <label for="username">Username: </label>
-                        <input type="text" id="username" name="username" autofocus="autofocus" class="form-control" required/>
-                    </div>
-                    <br>
-                    <div class="form-group">
-                        <label for="password">Password: </label>
-                        <input type="password" id="password" name="password" class="form-control" required/>
-                    </div>
-                    <br>
-                    <div class="d-grid">
-                        <button type="submit" class="btn btn-primary btn-block">Log in</button>
-                    </div>
-                </form>
-
-                <br>
-                <p>¿No tenes cuenta? <a th:href="@{/registro}">Registrate!</a></p>
-
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                <div class="card-header bg-primary text-white text-center py-4">
+                    <h3 class="font-weight-light my-2">Iniciar Sesión</h3>
+                </div>
+                <div class="card-body p-4">
+                    <form th:action="@{/login}" method="post">
+                        
+                        <div class="form-floating mb-3">
+                            <input type="text" id="username" name="username" autofocus="autofocus" class="form-control" placeholder="Username" required/>
+                            <label for="username" class="text-muted">Username</label>
+                        </div>
+                        
+                        <div class="form-floating mb-4">
+                            <input type="password" id="password" name="password" class="form-control" placeholder="Password" required/>
+                            <label for="password" class="text-muted">Password</label>
+                        </div>
+                        
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">Ingresar</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer text-center py-3 bg-white">
+                    <div class="small"><a th:href="@{/registro}" class="text-decoration-none">¿No tenés cuenta? ¡Registrate!</a></div>
+                </div>
             </div>
-
         </div>
     </div>
 </div>

@@ -1,43 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head th:insert="~{fragments/header}"></head>
-<body class="container mt-5">
+<body class="bg-light">
 
-<h2>Lista de Directores</h2>
+<div class="container mt-5 mb-5">
+    <div class="card shadow-sm border-0">
+        <div class="card-body p-4">
+            
+            <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+                <h2 class="mb-0 text-dark">Directores Registrados</h2>
+                <a th:href="@{/peliculas}" class="btn btn-secondary shadow-sm">Ver Lista de Películas</a>
+            </div>
 
-<table class="table table-bordered">
-    <thead class="thead-dark">
-    <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Apellido</th>
-        <th>Nacionalidad</th>
-        <th>Fecha de Nacimiento</th>
-        <th>Email</th>
-        <th>Peliculas</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="director : ${directores}">
-        <td th:text="${director.id}"></td>
-        <td th:text="${userService.obtenerUsuarioPorDirector(director)?.nombre ?: 'Nombre no disponible'}"></td>
-        <td th:text="${userService.obtenerUsuarioPorDirector(director)?.apellido ?: 'Apellido no disponible'}"></td>
-        <td th:text="${director.nacionalidad}"></td>
-        <td th:text="${director.fechaNacimiento}"></td>
-        <td th:text="${director.email}"></td>
-        <td>
-            <label>
-                <select disabled size="5" style="max-height: 75px; overflow-y: auto;">
-                    <option th:each="pelicula : ${director.getPeliculasDirigidas()}" th:value="${pelicula.id}" th:text="${pelicula.titulo}"></option>
-                </select>
-            </label>
-        </td>
-    </tr>
-    </tbody>
-</table>
-
-<!-- Enlace para regresar a la lista de peliculas -->
-<a th:href="@{/peliculas}" class="btn btn-secondary">Ver Lista de Peliculas</a>
+            <div class="table-responsive">
+                <table class="table table-hover table-striped align-middle border">
+                    <thead class="table-dark text-center">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Nacionalidad</th>
+                        <th>Nacimiento</th>
+                        <th>Email</th>
+                        <th>Películas Dirigidas</th>
+                    </tr>
+                    </thead>
+                    <tbody class="text-center">
+                    <tr th:each="director : ${directores}">
+                        <td class="fw-bold text-secondary" th:text="${director.id}"></td>
+                        <td th:text="${userService.obtenerUsuarioPorDirector(director)?.nombre ?: 'No disponible'}"></td>
+                        <td th:text="${userService.obtenerUsuarioPorDirector(director)?.apellido ?: 'No disponible'}"></td>
+                        <td th:text="${director.nacionalidad}"></td>
+                        <td th:text="${director.fechaNacimiento}"></td>
+                        <td class="text-primary" th:text="${director.email}"></td>
+                        <td>
+                            <select class="form-select form-select-sm text-center" disabled size="3" style="min-width: 150px;">
+                                <option th:each="pelicula : ${director.getPeliculasDirigidas()}" th:value="${pelicula.id}" th:text="${pelicula.titulo}"></option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(directores)}">
+                        <td colspan="7" class="text-center text-muted py-4">No hay directores registrados.</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div th:replace="~{fragments/footer}"></div>
 </body>
